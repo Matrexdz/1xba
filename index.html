@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviator Game Online for Real Money</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1b1b1b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .game-container {
+            background: #2d2d2d;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
+
+        .game-area {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            border: 2px solid #00ff00;
+            margin: 0 auto 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #003300, #004d00);
+        }
+
+        .plane {
+            width: 60px;
+            height: 60px;
+            background-image: url('https://example.com/red-plane.png'); /* Replace with actual image URL */
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .multiplier {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 20%;
+            font-size: 28px;
+            font-weight: bold;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .message {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 40%;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff004d;
+            text-shadow: 0 0 10px #ff004d;
+        }
+
+        .server-message {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 60%;
+            font-size: 18px;
+            color: #00bfff;
+            text-shadow: 0 0 10px #00bfff;
+        }
+
+        .promo-code {
+            font-weight: bold;
+            color: #ff00ff; /* Neon pink color */
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        h1 {
+            margin: 0 0 20px;
+            font-size: 32px;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .countdown {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 35%; /* Adjusted this value to move it higher */
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffffff;
+        }
+
+        .countdown-circle {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #00ff00;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        .countdown-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #ff004d;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 0, 77, 0.5);
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Aviator 1xbet 2.28</h1>
+        <div class="game-area">
+            <div id="plane" class="plane"></div>
+            <div id="multiplier" class="multiplier">X1</div>
+            <div id="message" class="message"></div>
+            <div id="serverMessage" class="server-message">
+                <span class="promo-code">1x_1985246</span>
+            </div>
+            <div id="countdown" class="countdown">
+                <div class="countdown-circle">
+                    <span id="countdownNumber" class="countdown-number"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="notification" class="notification"> You are not registered with a promo code.</div>
+    <script>
+        let plane = document.getElementById('plane');
+        let message = document.getElementById('message');
+        let multiplierDisplay = document.getElementById('multiplier');
+        let serverMessage = document.getElementById('serverMessage');
+        let countdownNumber = document.getElementById('countdownNumber');
+        let notification = document.getElementById('notification');
+
+        let height = 0;
+        let interval;
+        let gameStarted = false;
+        let isConnectedToServer = false; // Replace with actual server connection status
+
+        function startGame() {
+            height = 0;
+            gameStarted = true;
+            message.textContent = '';
+            multiplierDisplay.textContent = 'X1';
+            serverMessage.textContent = '';
+            countdownNumber.textContent = '';
+
+            if (!isConnectedToServer) {
+                showNotification('أنت غير مسجل');
+                serverMessage.innerHTML = 'You are not connected to the server. Please register a new account with this promo code:<hr> <span class="promo-code">1x_1985246</span><hr>';
+            }
+            
+            interval = setInterval(() => {
+                height += 6;
+                plane.style.bottom = height + 'px';
+                
+                let multiplier = (height / 89).toFixed(2);
+                multiplierDisplay.textContent = `X${multiplier}`;
+                
+                if (Math.random() < 0.01) {
+                    endGame();
+                }
+            }, 13);
+        }
+
+        function endGame() {
+            clearInterval(interval);
+            gameStarted = false;
+            let countdown = 10;
+            countdownNumber.textContent = countdown;
+
+            let countdownInterval = setInterval(() => {
+                countdown--;
+                countdownNumber.textContent = countdown;
+
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    startGame();
+                }
+            }, 1000);
+        }
+
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 2000);
+        }
+
+        startGame(); // Start the first game when the page loads
+    </script>
+</body>
+</html>
